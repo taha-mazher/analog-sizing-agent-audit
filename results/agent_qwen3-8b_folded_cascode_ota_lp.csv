@@ -1,0 +1,3 @@
+circuit,model,trial,budget,designs,evals_to_best,best_fom,ok_autosizer,ok_true,tokens_in,tokens_out,api_calls,seconds,crashed
+folded_cascode_ota_lp,qwen3:8b,0,50,,,,False,False,,,,0,"AttributeError(""'str' object has no attribute 'items'"") | AttributeError(""'str' object has no attribute 'items'"") | KeyError('key_insights_for_optimization')"
+folded_cascode_ota_lp,qwen3:8b,1,50,,,,False,False,,,,0,"AttributeError(""'str' object has no attribute 'items'"") | AttributeError(""'str' object has no attribute 'items'"") | AttributeError(""'str' object has no attribute 'items'"")"

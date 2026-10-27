@@ -1,0 +1,2 @@
+circuit,model,trial,budget,designs,evals_to_best,best_fom,ok_autosizer,ok_true,tokens_in,tokens_out,api_calls,seconds,crashed
+folded_cascode_ota_lp,qwen3:8b,0,100,12,2,1.1604748146435937,True,False,10970,12599,3,353,KeyError(5)

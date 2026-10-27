@@ -1,0 +1,5 @@
+.env
+__pycache__/
+third_party/
+*.log
+results/*.done

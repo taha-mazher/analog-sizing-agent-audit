@@ -1,0 +1,83 @@
+== 1. Replay on the enumerated circuits (results/bench_runs.csv), budget 100, 20 seeds: all-spec success %
+method               gp  random  random_noreplace  tpe
+circuit                                               
+buffer               95      80                65  100
+current_mirror_ota  100     100               100  100
+diode_load_amp       80      50                30   90
+five_trans_ota      100     100               100  100
+inverter            100     100               100  100
+nand_gate           100     100               100  100
+resistive_load_amp   55      65               100   95
+telescopic_ota      100     100               100  100
+xor_gate            100      65                55  100
+
+median regret % of the best feasible design found:
+method                gp  random  random_noreplace   tpe
+circuit                                                 
+buffer               0.5     5.0               2.9   0.0
+current_mirror_ota   0.0     0.4               0.4   0.0
+diode_load_amp      57.1    42.0               0.0  27.0
+five_trans_ota       0.0     0.1               0.1   0.0
+inverter             0.0     0.0               0.0   0.0
+nand_gate            0.0     4.3               4.0   0.0
+resistive_load_amp   0.0     0.0               0.0   0.0
+telescopic_ota       0.0     1.7               1.6   0.0
+xor_gate             0.0     5.7               1.1   0.0
+
+== 2. AutoSizer's own success check vs the real spec on the 2,000 random designs of each filter circuit
+folded_cascode_ota_lp      AutoSizer check passes  36.4%   true all-spec  0.0%   spec: fom > 0.3 AND lpf_stopband_atten_db > 20 AND lpf_cutoff_hz > 0.5 AND lpf_passband_gain_db > -5
+folded_cascode_ota_hp      AutoSizer check passes  38.8%   true all-spec  0.0%   spec: fom > 0.5 AND hpf_stopband_atten_db > 20 AND hpf_cutoff_hz > 10 AND hpf_passband_gain_db > -15
+folded_cascode_ota_bandp   AutoSizer check passes  53.6%   true all-spec  0.0%   spec: fom > 0.3 AND bpf_q_factor > 0.3 AND bpf_center_freq_hz > 0.3 AND bpf_peak_gain_db > -10
+
+== 3. Live comparison, 12 circuits x 3 methods x 5 seeds (results/live_*.csv): best-FoM design meets ...
+every spec (true), % of runs:
+method  gp  random  tpe
+budget                 
+50      58      38   65
+100     60      48   67
+300     68      58   70
+AutoSizer's check, % of runs:
+method  gp  random  tpe
+budget                 
+50      83      63   88
+100     85      73   87
+300     93      83   95
+any feasible design seen, % of runs:
+method  gp  random  tpe
+budget                 
+50      67      47   68
+100     68      60   72
+300     73      72   73
+
+per circuit at 300 simulations, % of 5 seeds (true / AutoSizer check):
+method                           gp     random        tpe
+circuit                                                  
+3_stage_ring_osc          100 / 100    80 / 80  100 / 100
+azc                       100 / 100    40 / 40  100 / 100
+dfcfc                     100 / 100  100 / 100    80 / 80
+fdgb                      100 / 100  100 / 100  100 / 100
+folded_cascode_ota        100 / 100  100 / 100  100 / 100
+folded_cascode_ota_bandp    0 / 100    0 / 100    0 / 100
+folded_cascode_ota_hp       0 / 100    0 / 100    0 / 100
+folded_cascode_ota_lp       0 / 100    0 / 100    0 / 100
+iac                         40 / 40    40 / 40    80 / 80
+ldo_regulator             100 / 100  100 / 100  100 / 100
+nmcnr                     100 / 100    60 / 60  100 / 100
+smc                         80 / 80    80 / 80    80 / 80
+
+runs where the best-FoM design passes AutoSizer's check but fails the real spec: 45 of 180
+runs that saw a fully feasible design but reported an infeasible best-FoM one: 13 of 180
+
+== 4. The AutoSizer agent itself (results/agent_*.csv), released budget of 100 designs
+                    trials  completed  crashed_attempts  claims_success  truly_meets_spec  median_designs  median_tokens_in  median_seconds
+run                                                                                                                                        
+gemini-3.5-flash         1          1                 0               1                 0            25.0           11757.0           149.0
+qwen3-8b                 2          0                 6               0                 0             NaN               NaN             0.0
+qwen3-8b-fixprompt       1          1                 1               1                 0            12.0           10970.0           353.0
+
+per trial:
+               run               circuit  trial  designs  api_calls  ok_autosizer  ok_true  seconds
+  gemini-3.5-flash folded_cascode_ota_lp      0     25.0        3.0          True    False      149
+          qwen3-8b folded_cascode_ota_lp      0      NaN        NaN         False    False        0
+          qwen3-8b folded_cascode_ota_lp      1      NaN        NaN         False    False        0
+qwen3-8b-fixprompt folded_cascode_ota_lp      0     12.0        3.0          True    False      353

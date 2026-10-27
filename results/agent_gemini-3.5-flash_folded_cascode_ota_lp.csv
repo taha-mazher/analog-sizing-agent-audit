@@ -1,0 +1,2 @@
+circuit,model,trial,budget,designs,evals_to_best,best_fom,ok_autosizer,ok_true,tokens_in,tokens_out,api_calls,seconds,crashed
+folded_cascode_ota_lp,gemini-3.5-flash,0,100,25.0,10.0,1.9209544197658464,True,False,11757.0,2757.0,3.0,149,
