@@ -1,0 +1,4 @@
+circuit,model,trial,budget,designs,evals_to_best,best_fom,ok_autosizer,ok_true,tokens_in,tokens_out,api_calls,seconds,crashed
+iac,qwen3:8b,0,100,42,30,3.9176560123880297,True,True,28017,10069,6,1214,
+iac,qwen3:8b,1,100,36,26,11.333777873116697,True,True,24063,9471,5,745,"TypeError(""bad operand type for unary -: 'NoneType'"")"
+iac,qwen3:8b,2,100,89,54,2.200454159334809,True,True,36586,10737,7,923,"TypeError(""bad operand type for unary -: 'NoneType'"")"

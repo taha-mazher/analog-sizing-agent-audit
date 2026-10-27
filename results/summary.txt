@@ -73,11 +73,28 @@ runs that saw a fully feasible design but reported an infeasible best-FoM one: 1
 run                                                                                                                                        
 gemini-3.5-flash         1          1                 0               1                 0            25.0           11757.0           149.0
 qwen3-8b                 2          0                 6               0                 0             NaN               NaN             0.0
-qwen3-8b-fixprompt       1          1                 1               1                 0            12.0           10970.0           353.0
+qwen3-8b-fixprompt      18         17                15              17                 8            24.0           11031.0           613.0
 
 per trial:
-               run               circuit  trial  designs  api_calls  ok_autosizer  ok_true  seconds
-  gemini-3.5-flash folded_cascode_ota_lp      0     25.0        3.0          True    False      149
-          qwen3-8b folded_cascode_ota_lp      0      NaN        NaN         False    False        0
-          qwen3-8b folded_cascode_ota_lp      1      NaN        NaN         False    False        0
-qwen3-8b-fixprompt folded_cascode_ota_lp      0     12.0        3.0          True    False      353
+               run                  circuit  trial  designs  api_calls  ok_autosizer  ok_true  seconds
+  gemini-3.5-flash    folded_cascode_ota_lp      0     25.0        3.0          True    False      149
+          qwen3-8b    folded_cascode_ota_lp      0      NaN        NaN         False    False        0
+          qwen3-8b    folded_cascode_ota_lp      1      NaN        NaN         False    False        0
+qwen3-8b-fixprompt folded_cascode_ota_bandp      0     15.0        3.0          True    False      491
+qwen3-8b-fixprompt folded_cascode_ota_bandp      1     18.0        3.0          True    False      475
+qwen3-8b-fixprompt folded_cascode_ota_bandp      2     24.0        3.0          True    False      600
+qwen3-8b-fixprompt    folded_cascode_ota_hp      0     12.0        3.0          True    False      636
+qwen3-8b-fixprompt    folded_cascode_ota_hp      1     16.0        3.0          True    False      502
+qwen3-8b-fixprompt    folded_cascode_ota_hp      2     16.0        3.0          True    False      498
+qwen3-8b-fixprompt    folded_cascode_ota_lp      0     12.0        3.0          True    False      353
+qwen3-8b-fixprompt    folded_cascode_ota_lp      1     18.0        3.0          True    False      626
+qwen3-8b-fixprompt    folded_cascode_ota_lp      2     15.0        3.0          True    False      598
+qwen3-8b-fixprompt                      iac      0     42.0        6.0          True     True     1214
+qwen3-8b-fixprompt                      iac      1     36.0        5.0          True     True      745
+qwen3-8b-fixprompt                      iac      2     89.0        7.0          True     True      923
+qwen3-8b-fixprompt                    nmcnr      0    124.0        9.0          True     True     1351
+qwen3-8b-fixprompt                    nmcnr      1      NaN        NaN         False    False        0
+qwen3-8b-fixprompt                    nmcnr      2    159.0        9.0          True     True     1019
+qwen3-8b-fixprompt                      smc      0     98.0        8.0          True     True     1261
+qwen3-8b-fixprompt                      smc      1    171.0       10.0          True     True     1647
+qwen3-8b-fixprompt                      smc      2    165.0       10.0          True     True      548

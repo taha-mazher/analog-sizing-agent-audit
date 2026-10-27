@@ -1,0 +1,4 @@
+circuit,model,trial,budget,designs,evals_to_best,best_fom,ok_autosizer,ok_true,tokens_in,tokens_out,api_calls,seconds,crashed
+nmcnr,qwen3:8b,0,100,124,119,98.93843324959174,True,True,53811,12817,9,1351,
+nmcnr,qwen3:8b,1,100,,,,False,False,,,,0,"TypeError(""bad operand type for unary -: 'NoneType'"") | ValueError('the lower bound 0 has to be less than the upper bound 0') | KeyError(3)"
+nmcnr,qwen3:8b,2,100,159,159,2.583814263880034,True,True,49577,12527,9,1019,"TypeError(""bad operand type for unary -: 'NoneType'"")"

@@ -26,7 +26,11 @@ local LLM. Work in progress; a paper is in preparation.
 4. **The agent's prompt shows the LLM an invalid JSON template.** The circuit-analysis prompt builds the per-metric
    "impact" field with `json.dumps(...)[1:-1]`, which strips its braces. A strong model guesses the intent; Qwen3-8B
    copies it literally (the field comes back as text), and in all 6 attempts the agent crashed at its first or second
-   step. With the two braces restored, the same model gets past those steps.
+   step. With the two braces restored, 17 of 18 trials complete.
+6. **The agent is good at the circuits it can be graded on, and claims success on the ones it cannot.** With the
+   prompt fixed, Qwen3-8B met every spec in all 8 completed trials on the three hard non-filter circuits (iac, nmcnr,
+   smc), where plain optimisers at 300 simulations succeed in 40 to 100% of seeds. On the three filters it declared
+   success in all 9 trials after 12 to 24 designs, and none of those designs meets the spec.
 5. **Maximising the figure of merit picks infeasible designs.** In 13 of 180 runs the optimiser had already found a
    design that meets every spec but reported a higher-FoM one that does not.
 
@@ -86,10 +90,21 @@ plateau patience 2) at its released budget of 100 designs and scores its best de
 |---|---|---|---|
 | Gemini 3.5 Flash | 1 of 1 so far (low-pass filter) | 1 | 0 |
 | Qwen3-8B, as released | 0 of 2 (6 attempts, all crashed) | 0 | 0 |
-| Qwen3-8B, prompt template fixed | runs in progress | | |
+| Qwen3-8B, prompt template fixed | 17 of 18 | 17 | 8 |
 
-On the low-pass filter, Gemini's agent stopped after 25 designs and 3 LLM calls, and the fixed-prompt Qwen agent after
-12 designs, both declaring success on designs that fail the passband-gain spec.
+Per circuit for the fixed-prompt Qwen agent (3 trials each, Ollama on an RTX 4060, 6 to 27 minutes per trial):
+
+| Circuits | Completed | Claims success | Truly meets spec | Designs used |
+|---|---|---|---|---|
+| lp, hp, bandp filters | 9 of 9 | 9 | 0 | 12 to 24 |
+| iac, nmcnr, smc | 8 of 9 | 8 | 8 | 36 to 171 |
+
+On every filter trial, and on Gemini's one low-pass trial (25 designs, 3 LLM calls), the agent stopped early and
+declared success on a design that fails the gain spec, because the dropped negative threshold is the only spec those
+designs miss. On the other three circuits it succeeded in every completed trial, but in 4 of 8 it overshot its
+100-design budget (124 to 171 designs), since the budget is only checked between optimisation rounds. One nmcnr trial
+crashed in all 3 attempts (Qwen listed the same variable as both tuned and fixed); 15 crashed attempts across the run
+were retried.
 
 ## Caveats
 
@@ -105,6 +120,7 @@ On the low-pass filter, Gemini's agent stopped after 25 designs and 3 LLM calls,
   an OpenAI-compatible client for local models (Ollama) with JSON mode, REST transport for the Gemini client, and the
   two-brace prompt fix, applied only when `AUDIT_FIX_PROMPT=1`. The Gemini and as-released Qwen runs use the agent
   as published.
+- Three trials per circuit is a small sample; the agent results show a pattern, not a rate.
 - The as-released Qwen trials ran at a budget of 50; they crash before the budget matters.
 
 ## Reproduce

@@ -1,0 +1,4 @@
+circuit,model,trial,budget,designs,evals_to_best,best_fom,ok_autosizer,ok_true,tokens_in,tokens_out,api_calls,seconds,crashed
+smc,qwen3:8b,0,100,98,74,7.999621599161161,True,True,43001,10855,8,1261,
+smc,qwen3:8b,1,100,171,134,7.593544351762939,True,True,61404,13672,10,1647,"TypeError(""bad operand type for unary -: 'NoneType'"")"
+smc,qwen3:8b,2,100,165,143,6.648613589152353,True,True,52939,13298,10,548,"TypeError(""bad operand type for unary -: 'NoneType'"")"

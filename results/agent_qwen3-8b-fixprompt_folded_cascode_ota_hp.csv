@@ -1,0 +1,4 @@
+circuit,model,trial,budget,designs,evals_to_best,best_fom,ok_autosizer,ok_true,tokens_in,tokens_out,api_calls,seconds,crashed
+folded_cascode_ota_hp,qwen3:8b,0,100,12,3,28.174701321255412,True,False,10828,8153,3,636,KeyError(5)
+folded_cascode_ota_hp,qwen3:8b,1,100,16,4,73.92809380423155,True,False,11031,8027,3,502,KeyError(5)
+folded_cascode_ota_hp,qwen3:8b,2,100,16,8,229.07342270714793,True,False,10875,10098,3,498,KeyError(5)

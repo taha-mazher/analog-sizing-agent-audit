@@ -1,0 +1,4 @@
+circuit,model,trial,budget,designs,evals_to_best,best_fom,ok_autosizer,ok_true,tokens_in,tokens_out,api_calls,seconds,crashed
+folded_cascode_ota_bandp,qwen3:8b,0,100,15,8,1.6032764484147999,True,False,10809,9843,3,491,KeyError(5) | KeyError(5)
+folded_cascode_ota_bandp,qwen3:8b,1,100,18,8,2.506038593532896,True,False,10735,9134,3,475,
+folded_cascode_ota_bandp,qwen3:8b,2,100,24,2,1.6645801709883883,True,False,10732,9676,3,600,
