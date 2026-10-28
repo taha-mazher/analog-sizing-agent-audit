@@ -62,3 +62,8 @@ print(ag.groupby('run').agg(trials=('trial', 'size'), completed=('completed', 's
 print('\nper trial:')
 print(ag[['run', 'circuit', 'trial', 'designs', 'api_calls', 'ok_autosizer', 'ok_true', 'seconds']].sort_values(
     ['run', 'circuit', 'trial']).to_string(index=False))
+
+print('\n== 5. Optimisers at each agent trial\'s own budget (results/budget_match_*.csv, 5 seeds, replayed from cache)')
+bm = R('budget_match_*.csv')
+print(pct(bm.pivot_table(index=['circuit', 'agent_trial', 'budget', 'agent_ok_true'], columns='method', values='ok_true')).to_string())
+print('all matched budgets, % of runs meeting every spec:', pct(bm.groupby('method').ok_true.mean()).to_dict())

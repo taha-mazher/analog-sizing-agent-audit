@@ -98,3 +98,16 @@ qwen3-8b-fixprompt                    nmcnr      2    159.0        9.0          
 qwen3-8b-fixprompt                      smc      0     98.0        8.0          True     True     1261
 qwen3-8b-fixprompt                      smc      1    171.0       10.0          True     True     1647
 qwen3-8b-fixprompt                      smc      2    165.0       10.0          True     True      548
+
+== 5. Optimisers at each agent trial's own budget (results/budget_match_*.csv, 5 seeds, replayed from cache)
+method                                    gp  random  tpe
+circuit agent_trial budget agent_ok_true                 
+iac     0           42     True            0       0   20
+        1           36     True            0       0   20
+        2           89     True           20      20   40
+nmcnr   0           124    True           80      20  100
+        2           159    True           80      40  100
+smc     0           98     True           80      80   80
+        1           171    True           80      80   80
+        2           165    True           80      80   80
+all matched budgets, % of runs meeting every spec: {'gp': 52, 'random': 40, 'tpe': 65}

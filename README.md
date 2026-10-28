@@ -106,6 +106,12 @@ designs miss. On the other three circuits it succeeded in every completed trial,
 crashed in all 3 attempts (Qwen listed the same variable as both tuned and fixed); 15 crashed attempts across the run
 were retried.
 
+**Matched budgets** (`budget_match.py`). Because the agent overshoots, each agent trial was compared with the three
+optimisers given exactly as many designs as that trial used (5 seeds each, replayed from the simulation cache and
+checked against the logged runs). Over those 8 budgets, TPE meets every spec in 65% of runs, GP-BO 52% and random
+search 40%, against 8 of 8 for the agent. The gap is largest on iac, where the agent succeeded in 36 to 89 designs and
+the best optimiser in 20 to 40% of seeds. With 3 agent trials per circuit this is a pattern, not a rate.
+
 ## Caveats
 
 - **The model AutoSizer was published with is not available.** Google no longer serves Gemini 2.5 Flash to new API
@@ -152,5 +158,6 @@ python summarize.py                           # every table above
 | `bench.py` | random, TPE and GP-BO replayed on the enumerated circuits |
 | `bench_live.py`, `run_live.sh` | the same optimisers live on the large circuits, scored both ways |
 | `run_agent.py`, `run_agent_all.sh` | the AutoSizer agent, any LLM, scored both ways |
+| `budget_match.py` | the optimisers scored at each agent trial's own design count |
 | `summarize.py` | all README tables, written to `results/summary.txt` |
 | `results/` | enumerations, samples, simulation caches and every run |
